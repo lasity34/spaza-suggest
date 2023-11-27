@@ -1,18 +1,23 @@
 import assert from 'assert';
 
+import SpazaSuggest from '../spaza-suggest.js';
 import pgPromise from 'pg-promise';
-import dotenv from "dotenv";
-import SpazaSuggest from '../services/spaza-suggest.js';
 
-// Initialize environment variables
-dotenv.config();
+// const DATABASE_URL= process.env.DATABASE_URL || "postgresql://codex-coder:pg123@localhost:5432/spaza_suggest";
+const DATABASE_URL= process.env.DATABASE_URL || "postgresql://zuggs:suggest123@localhost:5432/spaza_suggest";
 
-// Database connection
-const connectionOptions = {
-  connectionString: process.env.Spaza_Suggest_URL
-};
+const config = { 
+	connectionString : DATABASE_URL
+}
 const pgp = pgPromise();
-const db = pgp(connectionOptions);
+
+// if (process.env.NODE_ENV == 'production') {
+// 	config.ssl = { 
+// 		rejectUnauthorized : false
+// 	}
+// }
+
+const db = pgp(config);
 const spazaSuggest = SpazaSuggest(db);
 
 describe ("The smart spaza", function() {
@@ -116,7 +121,6 @@ describe ("The smart spaza", function() {
     });
 
     it("should be able to accept a suggestion", async function(){
-        this.timeout(5000);
 
         const code = await spazaSuggest.registerClient('spazani');
         const client = await spazaSuggest.clientLogin(code);

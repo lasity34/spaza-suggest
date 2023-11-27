@@ -116,7 +116,6 @@ describe ("The smart spaza", function() {
     });
 
     it("should be able to accept a suggestion", async function(){
-        this.timeout(5000);
 
         const code = await spazaSuggest.registerClient('spazani');
         const client = await spazaSuggest.clientLogin(code);

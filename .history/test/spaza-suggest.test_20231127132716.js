@@ -9,7 +9,8 @@ dotenv.config();
 
 // Database connection
 const connectionOptions = {
-  connectionString: process.env.Spaza_Suggest_URL
+  connectionString: process.env.Shoe_catalog_URL_test,
+  ssl: { rejectUnauthorized: false },
 };
 const pgp = pgPromise();
 const db = pgp(connectionOptions);
@@ -116,7 +117,6 @@ describe ("The smart spaza", function() {
     });
 
     it("should be able to accept a suggestion", async function(){
-        this.timeout(5000);
 
         const code = await spazaSuggest.registerClient('spazani');
         const client = await spazaSuggest.clientLogin(code);

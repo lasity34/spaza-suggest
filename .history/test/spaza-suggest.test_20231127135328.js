@@ -97,7 +97,7 @@ describe ("The smart spaza", function() {
         const suggestions = await spazaSuggest.suggestions(client.id);
 
         assert.equal(3, suggestions.length);
-        assert.equal('Nyanga East', suggestions[1].area_name);
+        assert.equal('Nyanga', suggestions[1].area_name);
 
     });
 

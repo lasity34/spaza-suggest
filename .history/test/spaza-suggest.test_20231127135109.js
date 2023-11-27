@@ -122,7 +122,7 @@ describe ("The smart spaza", function() {
         const client = await spazaSuggest.clientLogin(code);
 
         const area1 = await spazaSuggest.findAreaByName('Nyanga');
-        const area2 = await spazaSuggest.findAreaByName('Nyanga East');
+       
 
         await spazaSuggest.suggestProduct(area1.id, client.id, 'Small Pizzas');
         await spazaSuggest.suggestProduct(area2.id, client.id, 'Small Pizzas');
